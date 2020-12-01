@@ -5,7 +5,9 @@ val s = Scanner(System.`in`)
 
 fun main(args: Array<String>) {
     if (args.isEmpty()) parseText("word")
-    else if (args[0] == "-dataType") {
+    else if (args.contains("-sortIntegers")) {
+        sortIntegers()
+    } else if (args[0] == "-dataType") {
         when (args[1]) {
             "long" -> parseText("long")
             "line" -> parseText("line")
@@ -13,6 +15,16 @@ fun main(args: Array<String>) {
             else -> throw Exception("Invalid argument.")
         }
     } else throw Exception("Incorrect ose of program.")
+}
+
+fun sortIntegers() {
+    val numbers = mutableListOf<Int>()
+    do {
+        numbers += s.nextInt()
+    } while(s.hasNext())
+    val sortedNumbers = numbers.sorted()
+    println("Total numbers: ${numbers.size}.\n" +
+            "Sorted data: ${sortedNumbers.joinToString(" ")}")
 }
 
 fun parseText(option: String) {
